@@ -2,9 +2,11 @@ import './style.css'
 import { Avatar } from '@mui/material'
 import background from '../../images/background-radius.jpg'
 import Groups3Icon from '@mui/icons-material/Groups3';
-import PDP from '../../images/laptopwave.png'
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
 
 function Sidebar() {
+    const user = useSelector(selectUser);
     const recentItem = (topic) => (
         <div className="sidebar_recentItem">
             <span className="sidebar_hash"><Groups3Icon/></span>
@@ -16,8 +18,8 @@ function Sidebar() {
         {/* sidebarTop */}
         <div className="sidebar__top">
             <img src={background} alt="" />
-            <Avatar className="sidebar__avatar" src={PDP}/>
-            <h2>Alizéa Massé</h2>
+            <Avatar className="sidebar__avatar" src={ user?.photoUrl}>{user?.email[0].toUpperCase()}</Avatar>
+            <h2>{user.displayName}</h2>
             <h4 className='sidebar__desc'>À la recherche active d'une alternance Conceptrice d'application avec l'école O'clock - Développeuse Web / Web Mobile HTML | CSS | JAVASCRIPT | REACT | NODE JS | EXPRESS | SQL | PostgreSQL/MongoDB || spé DATA & API</h4>
         </div>
         {/* sidebarStats */}

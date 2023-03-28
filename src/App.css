@@ -8,6 +8,10 @@ align-items: center;
 .app__body {
  
   display: flex;
+  margin-top: 2.5em;
+  max-width: 1200px;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
 
 
  

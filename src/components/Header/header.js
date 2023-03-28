@@ -6,9 +6,20 @@ import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import TextsmsIcon from '@mui/icons-material/Textsms';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import Me from '../../images/laptopwave.png'
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/userSlice";
 import './header.css';
-const header = () => {
+import { auth } from "../firebase";
+
+
+const Header = () => {
+ 
+  const dispatch = useDispatch();
+
+  const logoutOfApp = () => {
+    dispatch(logout());
+    auth.signOut();
+  };
   return (
     <div className="header">
       <div className="header__left">
@@ -26,10 +37,10 @@ const header = () => {
        <HeaderOptions Icon={BusinessCenterIcon} title="Offres d'emploi"/>
        <HeaderOptions Icon={TextsmsIcon} title='Messagerie'/>
        <HeaderOptions Icon={NotificationsIcon} title='Notifications'/>
-        <HeaderOptions avatar={Me} title='Vous'/>
+        <HeaderOptions avatar={true} onClick={logoutOfApp}  title='Vous'/>
       </div>
     </div>
   );
 };
 
-export default header;
+export default Header;
