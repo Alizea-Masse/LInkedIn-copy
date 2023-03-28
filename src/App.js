@@ -4,6 +4,7 @@ import Header from "./components/Header/header";
 import Sidebar from "./components/Sidebar";
 import Feed from "./components/Feed";
 import Login from "./components/Login";
+import Widgets from "./components/Widgets";
 import { useSelector } from "react-redux";
 import { selectUser,logout, login } from "./features/userSlice";
 import { useEffect } from "react";
@@ -44,6 +45,7 @@ function App() {
           {/* Feed */}
           <Feed />
           {/* Widgets */}
+          <Widgets/>
         </div>
       )}
     </div>

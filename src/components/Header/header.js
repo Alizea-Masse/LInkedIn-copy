@@ -10,10 +10,15 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../features/userSlice";
 import './header.css';
 import { auth } from "../firebase";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/userSlice";
+import {BiCompass} from 'react-icons/bi'
+import {BsFillPeopleFill} from 'react-icons/bs'
+import {MdVideoLibrary} from 'react-icons/md'
 
 
 const Header = () => {
- 
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   const logoutOfApp = () => {
@@ -25,19 +30,26 @@ const Header = () => {
       <div className="header__left">
         {/* linkedIn logo */}
         <img src={linkedinlogo} alt="" />
-        <div className="header__search">
+        {user && <div className="header__search">
           {/* Search icon */}
           <SearchIcon />
           <input type="text" name="" id="" placeholder="Recherche" />
-        </div>
+        </div>}
       </div>
       <div className="header__right">
-       <HeaderOptions Icon={CottageIcon} title='Accueil'/>
+     
+      
+      { user && <><HeaderOptions Icon={CottageIcon} title='Accueil'/>
        <HeaderOptions Icon={SupervisedUserCircleIcon} title='Réseau'/>
-       <HeaderOptions Icon={BusinessCenterIcon} title="Offres d'emploi"/>
-       <HeaderOptions Icon={TextsmsIcon} title='Messagerie'/>
+       <HeaderOptions Icon={BusinessCenterIcon} title="Offres d'emploi"/> </>}
+       {!user&& <><HeaderOptions Icon={BiCompass} title="Découvrir"/>
+       <HeaderOptions Icon={BsFillPeopleFill} title="Personnes"/>
+       <HeaderOptions Icon={MdVideoLibrary} title="LinkedIn Learning"/>
+       <HeaderOptions Icon={BusinessCenterIcon} title="Offres d'emploi"/></>}
+       {user && <><HeaderOptions Icon={TextsmsIcon} title='Messagerie'/>
        <HeaderOptions Icon={NotificationsIcon} title='Notifications'/>
-        <HeaderOptions avatar={true} onClick={logoutOfApp}  title='Vous'/>
+         <HeaderOptions avatar={true} onClick={logoutOfApp}  title='Vous'/></>}
+        
       </div>
     </div>
   );

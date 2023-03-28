@@ -6,12 +6,12 @@ import SmartDisplayIcon from "@mui/icons-material/SmartDisplay";
 import ArticleIcon from "@mui/icons-material/Article";
 import InsertInvitationIcon from "@mui/icons-material/InsertInvitation";
 import Posts from "../Posts";
-
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import firebase from "firebase/compat/app";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
+import FlipMove from "react-flip-move";
 
 
 function Feed() {
@@ -77,6 +77,7 @@ function Feed() {
       </div>
 
       {/* Posts */}
+      <FlipMove>
       {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
         <Posts
           key={id}
@@ -85,7 +86,8 @@ function Feed() {
           message={message}
           photoUrl={photoUrl}
         />
-      ))}
+        ))}
+        </FlipMove>
     </div>
   );
 }
